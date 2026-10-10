@@ -77,7 +77,7 @@ Every path except `POST /api/auth/login` needs `Authorization: Bearer <token>`. 
 
 - "This month" is the calendar month in `APP_TIMEZONE` (Asia/Kolkata by default), from the 1st at 00:00 to the 1st of next month, by `occurredAt`.
 - `status` is optional. It filters the `incidents` list, but `statusSummary` and `totalIncidents` always count the whole month, so the UI can show the counts as filter buttons.
-- Each incident includes its location and assigned personnel (names fetched in one batch call).
+- Each incident includes its location and assigned personnel (staff names are copied onto each assignment when it is made, and read back in one query).
 - If habitat-service is down, the incidents are still returned with `zoneName: null` and a warning.
 
 ```bash

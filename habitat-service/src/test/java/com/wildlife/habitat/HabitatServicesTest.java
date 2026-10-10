@@ -58,7 +58,7 @@ class HabitatServicesTest {
         assertThatThrownBy(() -> areaService.delete(1L))
                 .isInstanceOf(ConflictException.class)
                 .hasMessageContaining("2 zone(s)");
-        verify(areaRepo, never()).delete(any());
+        verify(areaRepo, never()).delete(any(ProtectedArea.class));
     }
 
     @Test

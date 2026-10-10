@@ -73,7 +73,7 @@ Every path except `POST /api/auth/login` needs `Authorization: Bearer <token>`. 
 
 ## Business rules
 
-- **Status workflow:** `SCHEDULED → IN_PROGRESS | CANCELLED | MISSED`, `IN_PROGRESS → COMPLETED`. Other moves are 409. Logs can only be added once a patrol is `IN_PROGRESS`.
+- **Status workflow:** `SCHEDULED → IN_PROGRESS | CANCELLED | MISSED`, `IN_PROGRESS → COMPLETED`. Other moves are 409. Logs can only be added while a patrol is `IN_PROGRESS` or `COMPLETED` (for a late write-up).
 - Only `NIGHT` shifts may end after midnight (end time earlier than start time).
 - **Creating a schedule reserves resources:** one `PATROL` allocation per team member plus the vehicle. If any reservation returns 409 the schedule is refused and the reservations already made are cancelled. If resource-service is unreachable the schedule is saved with a warning.
 - Status changes are mirrored to the allocations (`IN_PROGRESS` → `ACTIVE`, `COMPLETED` → `COMPLETED`, `CANCELLED`/`MISSED` → `CANCELLED`); failures here are warnings, never errors.
