@@ -1,0 +1,5 @@
+package com.wildlife.programme.entity;
+
+public enum ProgrammeType {
+    SPECIES_RECOVERY, HABITAT_RESTORATION, ANTI_POACHING, COMMUNITY_OUTREACH, RESEARCH_MONITORING, WATER_MANAGEMENT
+}
