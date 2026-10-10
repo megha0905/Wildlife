@@ -28,12 +28,12 @@ class TokenRoundTripTest {
         JwtService validator = new JwtService(SECRET);
         validator.init();
 
-        User user = user(2L, "officer", "Anita Sharma", Set.of(Role.FOREST_OFFICER), 1L);
+        User user = user(2L, "officer", "Megha Gupta", Set.of(Role.FOREST_OFFICER), 1L);
         AuthUser parsed = validator.parse(issuer.issue(user));
 
         assertThat(parsed.id()).isEqualTo(2L);
         assertThat(parsed.username()).isEqualTo("officer");
-        assertThat(parsed.fullName()).isEqualTo("Anita Sharma");
+        assertThat(parsed.fullName()).isEqualTo("Megha Gupta");
         assertThat(parsed.roles()).containsExactly("FOREST_OFFICER");
         assertThat(parsed.staffId()).isEqualTo(1L);
     }
@@ -55,7 +55,7 @@ class TokenRoundTripTest {
         JwtService validator = new JwtService(SECRET);
         validator.init();
 
-        String token = issuer.issue(user(3L, "ranger", "Ravi", Set.of(Role.RANGER), 2L));
+        String token = issuer.issue(user(3L, "ranger", "Soni", Set.of(Role.RANGER), 2L));
         assertThatThrownBy(() -> validator.parse(token)).isInstanceOf(ExpiredJwtException.class);
     }
 
@@ -65,7 +65,7 @@ class TokenRoundTripTest {
         JwtService validator = new JwtService(SECRET);
         validator.init();
 
-        String token = issuer.issue(user(3L, "ranger", "Ravi", Set.of(Role.RANGER), 2L));
+        String token = issuer.issue(user(3L, "ranger", "Soni", Set.of(Role.RANGER), 2L));
         assertThatThrownBy(() -> validator.parse(token)).isInstanceOf(JwtException.class);
     }
 

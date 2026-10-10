@@ -57,11 +57,11 @@ CREATE INDEX ix_allocations_resource ON allocations (resource_kind, resource_id,
 
 -- ---------------------------------------------------------------- seed (IDs fixed by CONTRACTS.md 12)
 INSERT INTO staff (id, employee_code, full_name, designation, status, phone, email, home_area_id, joined_on) VALUES
- (1, 'EMP-001', 'Anita Sharma',   'FOREST_OFFICER', 'ACTIVE',   '+91 94250 11001', 'anita.sharma@forest.gov.in',  1, DATE '2012-06-01'),
- (2, 'EMP-002', 'Ravi Uikey',     'RANGE_OFFICER',  'ACTIVE',   '+91 94250 11002', 'ravi.uikey@forest.gov.in',    1, DATE '2015-03-15'),
- (3, 'EMP-003', 'Mohan Das',      'FOREST_GUARD',   'ACTIVE',   '+91 94250 11003', NULL,                          1, DATE '2018-09-10'),
- (4, 'EMP-004', 'Dr. Arun Menon', 'VETERINARIAN',   'ACTIVE',   '+91 94470 22004', 'arun.menon@forest.gov.in',    3, DATE '2014-01-20'),
- (5, 'EMP-005', 'Bikash Bora',    'FOREST_GUARD',   'ACTIVE',   '+91 94350 33005', NULL,                          2, DATE '2019-11-01'),
+ (1, 'EMP-001', 'Megha Gupta',   'FOREST_OFFICER', 'ACTIVE',   '+91 94250 11001', 'megha.gupta@forest.gov.in',  1, DATE '2012-06-01'),
+ (2, 'EMP-002', 'Soni Kumari',     'RANGE_OFFICER',  'ACTIVE',   '+91 94250 11002', 'soni.kumari@forest.gov.in',    1, DATE '2015-03-15'),
+ (3, 'EMP-003', 'Srishti Sao',      'FOREST_GUARD',   'ACTIVE',   '+91 94250 11003', NULL,                          1, DATE '2018-09-10'),
+ (4, 'EMP-004', 'Dr. Neha Fatima', 'VETERINARIAN',   'ACTIVE',   '+91 94470 22004', 'neha.fatima@forest.gov.in',    3, DATE '2014-01-20'),
+ (5, 'EMP-005', 'Sakshi Rathi',    'FOREST_GUARD',   'ACTIVE',   '+91 94350 33005', NULL,                          2, DATE '2019-11-01'),
  (6, 'EMP-006', 'Suresh Nair',    'RANGE_OFFICER',  'ACTIVE',   '+91 94470 22006', 'suresh.nair@forest.gov.in',   3, DATE '2013-07-07'),
  (7, 'EMP-007', 'Imran Khan',     'DRIVER',         'ACTIVE',   '+91 94250 11007', NULL,                          1, DATE '2016-02-12'),
  (8, 'EMP-008', 'Lakshmi Pillai', 'RESEARCHER',     'ON_LEAVE', '+91 94350 33008', 'lakshmi.pillai@wii.gov.in',   2, DATE '2021-08-23');
@@ -81,20 +81,20 @@ INSERT INTO equipment (id, asset_tag, name, equipment_type, status, home_area_id
 -- Patrol allocations line up with patrol-service seed schedules 1-3 (purpose PATROL, reference_id = schedule id)
 INSERT INTO allocations (id, resource_kind, resource_id, resource_label, purpose, reference_id, reference_label,
                          start_at, end_at, status, allocated_by_user_id, allocated_by_name, notes) VALUES
- (1, 'STAFF',   2, 'Ravi Uikey',   'PATROL', 1, 'Patrol PS-1, Mukki Core, today morning',
-     CURRENT_DATE + TIME '06:00', CURRENT_DATE + TIME '12:00', 'PLANNED',   2, 'Anita Sharma', NULL),
- (2, 'STAFF',   3, 'Mohan Das',    'PATROL', 1, 'Patrol PS-1, Mukki Core, today morning',
-     CURRENT_DATE + TIME '06:00', CURRENT_DATE + TIME '12:00', 'PLANNED',   2, 'Anita Sharma', NULL),
+ (1, 'STAFF',   2, 'Soni Kumari',   'PATROL', 1, 'Patrol PS-1, Mukki Core, today morning',
+     CURRENT_DATE + TIME '06:00', CURRENT_DATE + TIME '12:00', 'PLANNED',   2, 'Megha Gupta', NULL),
+ (2, 'STAFF',   3, 'Srishti Sao',    'PATROL', 1, 'Patrol PS-1, Mukki Core, today morning',
+     CURRENT_DATE + TIME '06:00', CURRENT_DATE + TIME '12:00', 'PLANNED',   2, 'Megha Gupta', NULL),
  (3, 'VEHICLE', 1, 'MP-51-G-1021', 'PATROL', 1, 'Patrol PS-1, Mukki Core, today morning',
-     CURRENT_DATE + TIME '06:00', CURRENT_DATE + TIME '12:00', 'PLANNED',   2, 'Anita Sharma', NULL),
- (4, 'STAFF',   2, 'Ravi Uikey',   'PATROL', 2, 'Patrol PS-2, Mukki Core, yesterday evening',
-     CURRENT_DATE - 1 + TIME '15:00', CURRENT_DATE - 1 + TIME '19:00', 'COMPLETED', 2, 'Anita Sharma', NULL),
- (5, 'STAFF',   3, 'Mohan Das',    'PATROL', 2, 'Patrol PS-2, Mukki Core, yesterday evening',
-     CURRENT_DATE - 1 + TIME '15:00', CURRENT_DATE - 1 + TIME '19:00', 'COMPLETED', 2, 'Anita Sharma', NULL),
- (6, 'STAFF',   5, 'Bikash Bora',  'PATROL', 3, 'Patrol PS-3, Kohora Central, tomorrow morning',
-     CURRENT_DATE + 1 + TIME '06:00', CURRENT_DATE + 1 + TIME '11:00', 'PLANNED', 2, 'Anita Sharma', NULL),
+     CURRENT_DATE + TIME '06:00', CURRENT_DATE + TIME '12:00', 'PLANNED',   2, 'Megha Gupta', NULL),
+ (4, 'STAFF',   2, 'Soni Kumari',   'PATROL', 2, 'Patrol PS-2, Mukki Core, yesterday evening',
+     CURRENT_DATE - 1 + TIME '15:00', CURRENT_DATE - 1 + TIME '19:00', 'COMPLETED', 2, 'Megha Gupta', NULL),
+ (5, 'STAFF',   3, 'Srishti Sao',    'PATROL', 2, 'Patrol PS-2, Mukki Core, yesterday evening',
+     CURRENT_DATE - 1 + TIME '15:00', CURRENT_DATE - 1 + TIME '19:00', 'COMPLETED', 2, 'Megha Gupta', NULL),
+ (6, 'STAFF',   5, 'Sakshi Rathi',  'PATROL', 3, 'Patrol PS-3, Kohora Central, tomorrow morning',
+     CURRENT_DATE + 1 + TIME '06:00', CURRENT_DATE + 1 + TIME '11:00', 'PLANNED', 2, 'Megha Gupta', NULL),
  (7, 'EQUIPMENT', 5, 'TQ-PRY-01 Tranquilizer rifle 1', 'RESCUE', 1, 'Rescue RSC case 1 (Kombi)',
-     CURRENT_DATE - 9 + TIME '08:00', CURRENT_DATE + 5 + TIME '18:00', 'ACTIVE', 4, 'Dr. Arun Menon', NULL);
+     CURRENT_DATE - 9 + TIME '08:00', CURRENT_DATE + 5 + TIME '18:00', 'ACTIVE', 4, 'Dr. Neha Fatima', NULL);
 
 SELECT setval(pg_get_serial_sequence('staff', 'id'), (SELECT MAX(id) FROM staff));
 SELECT setval(pg_get_serial_sequence('vehicles', 'id'), (SELECT MAX(id) FROM vehicles));

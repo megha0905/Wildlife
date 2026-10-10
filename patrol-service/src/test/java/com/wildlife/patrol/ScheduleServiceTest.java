@@ -64,8 +64,8 @@ class ScheduleServiceTest {
         team.setName("Mukki Tigers");
         team.setAreaId(1L);
         team.setActive(true);
-        team.getMembers().add(new TeamMember(2L, "Ravi Uikey", "RANGE_OFFICER"));
-        team.getMembers().add(new TeamMember(3L, "Mohan Das", "FOREST_GUARD"));
+        team.getMembers().add(new TeamMember(2L, "Soni Kumari", "RANGE_OFFICER"));
+        team.getMembers().add(new TeamMember(3L, "Srishti Sao", "FOREST_GUARD"));
         PatrolRoute route = new PatrolRoute();
         route.setId(1L);
         route.setName("Mukki core loop");
@@ -101,12 +101,12 @@ class ScheduleServiceTest {
     void conflictFailsTheScheduleAndCancelsWhatWasReserved() {
         FeignException conflict = mock(FeignException.class);
         when(conflict.status()).thenReturn(409);
-        when(conflict.contentUTF8()).thenReturn("{\"message\":\"Mohan Das is already allocated\"}");
+        when(conflict.contentUTF8()).thenReturn("{\"message\":\"Srishti Sao is already allocated\"}");
         when(resource.createAllocation(any())).thenReturn(alloc(101L)).thenThrow(conflict);
 
         assertThatThrownBy(() -> service.create(request(null)))
                 .isInstanceOf(ConflictException.class)
-                .hasMessageContaining("Mohan Das is already allocated");
+                .hasMessageContaining("Srishti Sao is already allocated");
         verify(resource).changeAllocationStatus(eq(101L), eq(new AllocationStatusBody("CANCELLED")));
     }
 

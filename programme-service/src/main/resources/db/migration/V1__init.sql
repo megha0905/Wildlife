@@ -102,8 +102,8 @@ SELECT setval(pg_get_serial_sequence('programmes', 'id'), (SELECT MAX(id) FROM p
 SELECT setval(pg_get_serial_sequence('programme_targets', 'id'), (SELECT MAX(id) FROM programme_targets));
 
 INSERT INTO progress_updates (programme_id, target_id, update_date, previous_value, new_value, note, reported_by_user_id, reported_by_name) VALUES
- (1, 1, CURRENT_DATE - 35, 40, 21, 'Joint sweeps started in all beats', 2, 'Anita Sharma'),
- (1, 1, CURRENT_DATE - 5,  21, 12, 'Down to 12 snares this month',      3, 'Ravi Uikey'),
- (1, 2, CURRENT_DATE - 12, 3,  9,  'Six more villages joined',          2, 'Anita Sharma'),
- (2, 3, CURRENT_DATE - 7,  20, 45, 'Mechanical harvester deployed',     2, 'Anita Sharma'),
- (2, NULL, CURRENT_DATE - 1, NULL, NULL, 'Burning plan blocked pending permission from the Chief Wildlife Warden', 2, 'Anita Sharma');
+ (1, 1, CURRENT_DATE - 35, 40, 21, 'Joint sweeps started in all beats', 2, 'Megha Gupta'),
+ (1, 1, CURRENT_DATE - 5,  21, 12, 'Down to 12 snares this month',      3, 'Soni Kumari'),
+ (1, 2, CURRENT_DATE - 12, 3,  9,  'Six more villages joined',          2, 'Megha Gupta'),
+ (2, 3, CURRENT_DATE - 7,  20, 45, 'Mechanical harvester deployed',     2, 'Megha Gupta'),
+ (2, NULL, CURRENT_DATE - 1, NULL, NULL, 'Burning plan blocked pending permission from the Chief Wildlife Warden', 2, 'Megha Gupta');

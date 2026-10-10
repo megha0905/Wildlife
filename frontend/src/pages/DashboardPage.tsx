@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import { reportApi } from '../api/endpoints';
 import { Bars, Progress } from '../components/Bars';
-import { ErrorBanner, IUCN, Loading, PageHeader, Warnings, fmtDateTime, fmtInr, useLoad } from '../components/ui';
+import { useAuth } from '../auth/AuthContext';
+import { ErrorBanner, IUCN, Loading, Warnings, fmtDateTime, fmtInr, label, useLoad } from '../components/ui';
 
 const SEVERITY_COLORS = { LOW: '#9fbdb1', MEDIUM: '#d9a441', HIGH: '#c2603d', CRITICAL: '#a93a26' };
 const IUCN_COLORS = Object.fromEntries(Object.entries(IUCN).map(([k, v]) => [k, v.color]));
 
 export function DashboardPage() {
+  const { user } = useAuth();
   const { data: d, error, loading } = useLoad(() => reportApi.dashboard(), []);
 
   if (loading && !d) return <Loading />;
@@ -26,7 +28,7 @@ export function DashboardPage() {
 
   return (
     <>
-      <PageHeader title="Dashboard" intro={`Consolidated picture across all services, generated ${fmtDateTime(d.generatedAt)}.`} />
+      <WelcomeBanner name={user?.fullName} roles={user?.roles.map(label).join(', ')} generatedAt={d.generatedAt} />
       <Warnings items={d.warnings} />
 
       <div className="kpis">
@@ -84,5 +86,27 @@ export function DashboardPage() {
         </section>
       </div>
     </>
+  );
+}
+
+/** Greeting at the top of the dashboard: the user's first name, today's date and the most-used screens. */
+function WelcomeBanner({ name, roles, generatedAt }: { name?: string; roles?: string; generatedAt: string }) {
+  const first = name ? name.replace(/^Dr\.\s*/, '').split(' ')[0] : '';
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const today = new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  return (
+    <div className="welcome">
+      <div className="welcome-text">
+        <p className="welcome-date">{today}</p>
+        <h1>{greeting}{first ? `, ${first}` : ''}</h1>
+        <p>{roles ? `${roles} · ` : ''}Here is what is happening across your protected areas. Updated {fmtDateTime(generatedAt)}.</p>
+      </div>
+      <div className="welcome-actions">
+        <Link className="btn welcome-btn-main" to="/incidents">Incident board</Link>
+        <Link className="btn welcome-btn" to="/incidents/monthly">Monthly zone review</Link>
+        <Link className="btn welcome-btn" to="/patrols">Patrol planner</Link>
+      </div>
+    </div>
   );
 }

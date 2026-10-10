@@ -55,7 +55,7 @@ class AllocationServiceTest {
         service = new AllocationService(allocations, staff, vehicles, mock(EquipmentRepository.class),
                 Clock.systemDefaultZone());
         when(allocations.save(any(Allocation.class))).thenAnswer(inv -> inv.getArgument(0));
-        when(staff.findById(2L)).thenReturn(Optional.of(staff(2L, "Ravi Uikey", StaffStatus.ACTIVE)));
+        when(staff.findById(2L)).thenReturn(Optional.of(staff(2L, "Soni Kumari", StaffStatus.ACTIVE)));
     }
 
     @Test
@@ -66,7 +66,7 @@ class AllocationServiceTest {
         AllocationResponse r = service.create(request(ResourceKind.STAFF, 2L, SIX, NOON));
 
         assertThat(r.status()).isEqualTo(AllocationStatus.PLANNED);
-        assertThat(r.resourceLabel()).isEqualTo("Ravi Uikey");
+        assertThat(r.resourceLabel()).isEqualTo("Soni Kumari");
     }
 
     @Test
@@ -80,7 +80,7 @@ class AllocationServiceTest {
 
         assertThatThrownBy(() -> service.create(request(ResourceKind.STAFF, 2L, SIX, NOON)))
                 .isInstanceOf(ConflictException.class)
-                .hasMessageContaining("Ravi Uikey")
+                .hasMessageContaining("Soni Kumari")
                 .hasMessageContaining("Patrol PS-7");
         verify(allocations, never()).save(any());
     }

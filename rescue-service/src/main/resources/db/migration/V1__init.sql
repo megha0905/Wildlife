@@ -84,29 +84,29 @@ INSERT INTO rescue_cases (id, case_number, animal_id, animal_tag_id, species_id,
  (1, 'RSC-' || to_char(LOCALTIMESTAMP, 'YYYY') || '-0001', 5, 'ELE-PRY-007', 2, 'Asian Elephant',
      'Adult tusker, left tusk broken', 'INJURY', 'INJURED', 'UNDER_TREATMENT',
      LOCALTIMESTAMP - interval '9 days', 9.5916, 77.1676, 3, 5, 8,
-     'Periyar Elephant Rescue Centre', 4, 'Dr. Arun Menon', 'Tranquilised at lake edge; transported by truck.',
+     'Periyar Elephant Rescue Centre', 4, 'Dr. Neha Fatima', 'Tranquilised at lake edge; transported by truck.',
      LOCALTIMESTAMP - interval '9 days', LOCALTIMESTAMP - interval '8 days'),
  (2, 'RSC-' || to_char(LOCALTIMESTAMP, 'YYYY') || '-0002', NULL, NULL, 4, 'Indian Leopard',
      'Female cub, about 4 months, separated from mother', 'ORPHANED', 'SICK', 'REHABILITATING',
      LOCALTIMESTAMP - interval '75 days', 22.3790, 80.5680, 1, 2, NULL,
-     'Mukki Wildlife Transit Centre', 2, 'Anita Sharma', 'Found in a sugarcane field after mother not seen for 3 days.',
+     'Mukki Wildlife Transit Centre', 2, 'Megha Gupta', 'Found in a sugarcane field after mother not seen for 3 days.',
      LOCALTIMESTAMP - interval '75 days', LOCALTIMESTAMP - interval '20 days');
 
 SELECT setval('rescue_case_seq', 2);
 SELECT setval(pg_get_serial_sequence('rescue_cases', 'id'), (SELECT MAX(id) FROM rescue_cases));
 
 INSERT INTO treatments (rescue_id, treatment_date, diagnosis, procedure, medications, vet_staff_id, vet_name, notes) VALUES
- (1, CURRENT_DATE - 8, 'Abscess on left hind leg', 'Abscess drained and flushed', 'Enrofloxacin, meloxicam', 4, 'Dr. Arun Menon', NULL),
- (1, CURRENT_DATE - 4, 'Abscess healing',          'Wound dressing changed',      'Enrofloxacin',           4, 'Dr. Arun Menon', 'Eating well'),
- (2, CURRENT_DATE - 74, 'Dehydration, mild worm load', 'Rehydration and deworming', 'Oral fluids, fenbendazole', 4, 'Dr. Arun Menon', NULL);
+ (1, CURRENT_DATE - 8, 'Abscess on left hind leg', 'Abscess drained and flushed', 'Enrofloxacin, meloxicam', 4, 'Dr. Neha Fatima', NULL),
+ (1, CURRENT_DATE - 4, 'Abscess healing',          'Wound dressing changed',      'Enrofloxacin',           4, 'Dr. Neha Fatima', 'Eating well'),
+ (2, CURRENT_DATE - 74, 'Dehydration, mild worm load', 'Rehydration and deworming', 'Oral fluids, fenbendazole', 4, 'Dr. Neha Fatima', NULL);
 
 INSERT INTO rehab_progress (rescue_id, assessed_on, enclosure, behaviour_notes, weight_kg, fit_for_release, assessed_by) VALUES
- (2, CURRENT_DATE - 40, 'Soft-release enclosure A', 'Hunting live prey; avoids keepers', 14.5, FALSE, 'Dr. Arun Menon'),
- (2, CURRENT_DATE - 5,  'Soft-release enclosure A', 'Independent, wary of people, good body condition', 19.0, TRUE, 'Dr. Arun Menon');
+ (2, CURRENT_DATE - 40, 'Soft-release enclosure A', 'Hunting live prey; avoids keepers', 14.5, FALSE, 'Dr. Neha Fatima'),
+ (2, CURRENT_DATE - 5,  'Soft-release enclosure A', 'Independent, wary of people, good body condition', 19.0, TRUE, 'Dr. Neha Fatima');
 
 INSERT INTO rescue_status_history (rescue_id, from_status, to_status, changed_by_user_id, changed_by_name, changed_at, note) VALUES
- (1, NULL,              'REGISTERED',      4, 'Dr. Arun Menon', LOCALTIMESTAMP - interval '9 days',  'Rescue case registered'),
- (1, 'REGISTERED',      'UNDER_TREATMENT', 4, 'Dr. Arun Menon', LOCALTIMESTAMP - interval '8 days',  NULL),
- (2, NULL,              'REGISTERED',      2, 'Anita Sharma',   LOCALTIMESTAMP - interval '75 days', 'Rescue case registered'),
- (2, 'REGISTERED',      'UNDER_TREATMENT', 4, 'Dr. Arun Menon', LOCALTIMESTAMP - interval '74 days', NULL),
- (2, 'UNDER_TREATMENT', 'REHABILITATING',  4, 'Dr. Arun Menon', LOCALTIMESTAMP - interval '60 days', 'Weaned onto meat');
+ (1, NULL,              'REGISTERED',      4, 'Dr. Neha Fatima', LOCALTIMESTAMP - interval '9 days',  'Rescue case registered'),
+ (1, 'REGISTERED',      'UNDER_TREATMENT', 4, 'Dr. Neha Fatima', LOCALTIMESTAMP - interval '8 days',  NULL),
+ (2, NULL,              'REGISTERED',      2, 'Megha Gupta',   LOCALTIMESTAMP - interval '75 days', 'Rescue case registered'),
+ (2, 'REGISTERED',      'UNDER_TREATMENT', 4, 'Dr. Neha Fatima', LOCALTIMESTAMP - interval '74 days', NULL),
+ (2, 'UNDER_TREATMENT', 'REHABILITATING',  4, 'Dr. Neha Fatima', LOCALTIMESTAMP - interval '60 days', 'Weaned onto meat');

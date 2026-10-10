@@ -79,13 +79,13 @@ CREATE INDEX ix_logs_schedule ON patrol_logs (schedule_id);
 
 -- ---------------------------------------------------------------- seed (IDs fixed by CONTRACTS.md 12)
 INSERT INTO patrol_teams (id, name, area_id, leader_staff_id, leader_name, active) VALUES
- (1, 'Mukki Tigers',       1, 2, 'Ravi Uikey',  TRUE),
- (2, 'Kohora Rhino Watch', 2, 5, 'Bikash Bora', TRUE);
+ (1, 'Mukki Tigers',       1, 2, 'Soni Kumari',  TRUE),
+ (2, 'Kohora Rhino Watch', 2, 5, 'Sakshi Rathi', TRUE);
 
 INSERT INTO patrol_team_members (team_id, staff_id, staff_name, designation) VALUES
- (1, 2, 'Ravi Uikey',  'RANGE_OFFICER'),
- (1, 3, 'Mohan Das',   'FOREST_GUARD'),
- (2, 5, 'Bikash Bora', 'FOREST_GUARD');
+ (1, 2, 'Soni Kumari',  'RANGE_OFFICER'),
+ (1, 3, 'Srishti Sao',   'FOREST_GUARD'),
+ (2, 5, 'Sakshi Rathi', 'FOREST_GUARD');
 
 INSERT INTO patrol_routes (id, name, area_id, zone_id, zone_name, distance_km, estimated_hours, difficulty, description) VALUES
  (1, 'Mukki core loop',       1, 1, 'Mukki Core',     18.0, 6.0, 'MODERATE', 'Gate - Sondar tank - waterhole 3 - back to gate'),
@@ -102,9 +102,9 @@ INSERT INTO patrol_route_waypoints (route_id, sequence, latitude, longitude, lab
 
 INSERT INTO patrol_schedules (id, team_id, route_id, patrol_date, shift, start_time, end_time, status, vehicle_id,
                               objective, started_at, completed_at, created_by_name) VALUES
- (1, 1, 1, CURRENT_DATE,     'MORNING', TIME '06:00', TIME '12:00', 'SCHEDULED', 1, 'Check waterhole 3 pump and snare sweep near the gate', NULL, NULL, 'Anita Sharma'),
- (2, 1, 1, CURRENT_DATE - 1, 'EVENING', TIME '15:00', TIME '19:00', 'COMPLETED', NULL, 'Evening loop', CURRENT_DATE - 1 + TIME '15:05', CURRENT_DATE - 1 + TIME '19:10', 'Anita Sharma'),
- (3, 2, 2, CURRENT_DATE + 1, 'MORNING', TIME '06:00', TIME '11:00', 'SCHEDULED', NULL, 'Rhino census support', NULL, NULL, 'Anita Sharma');
+ (1, 1, 1, CURRENT_DATE,     'MORNING', TIME '06:00', TIME '12:00', 'SCHEDULED', 1, 'Check waterhole 3 pump and snare sweep near the gate', NULL, NULL, 'Megha Gupta'),
+ (2, 1, 1, CURRENT_DATE - 1, 'EVENING', TIME '15:00', TIME '19:00', 'COMPLETED', NULL, 'Evening loop', CURRENT_DATE - 1 + TIME '15:05', CURRENT_DATE - 1 + TIME '19:10', 'Megha Gupta'),
+ (3, 2, 2, CURRENT_DATE + 1, 'MORNING', TIME '06:00', TIME '11:00', 'SCHEDULED', NULL, 'Rhino census support', NULL, NULL, 'Megha Gupta');
 
 -- allocation ids created in resource-service seed
 INSERT INTO patrol_schedule_allocations (schedule_id, allocation_id) VALUES
@@ -115,9 +115,9 @@ INSERT INTO patrol_schedule_allocations (schedule_id, allocation_id) VALUES
 INSERT INTO patrol_logs (id, schedule_id, logged_at, observation_type, latitude, longitude, description,
                          animal_tag_id, severity_hint, reported_by_user_id, reported_by_name, incident_id) VALUES
  (1, 2, CURRENT_DATE - 1 + TIME '16:20', 'ANIMAL_SIGHTING', 22.2900, 80.6400, 'Munna resting near Sondar tank',
-     'TGR-KNH-001', NULL, 3, 'Ravi Uikey', NULL),
+     'TGR-KNH-001', NULL, 3, 'Soni Kumari', NULL),
  (2, 2, CURRENT_DATE - 1 + TIME '17:45', 'SNARE_FOUND',     22.2815, 80.6455, 'Wire snare on game trail 200 m from waterhole 3; removed',
-     NULL, 'HIGH', 3, 'Ravi Uikey', 3);
+     NULL, 'HIGH', 3, 'Soni Kumari', 3);
 
 SELECT setval(pg_get_serial_sequence('patrol_teams', 'id'), (SELECT MAX(id) FROM patrol_teams));
 SELECT setval(pg_get_serial_sequence('patrol_routes', 'id'), (SELECT MAX(id) FROM patrol_routes));
