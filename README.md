@@ -97,7 +97,7 @@ cd auth-service && mvn spring-boot:run          # repeat for each service, one t
 cd frontend && npm install && npm run dev        # http://localhost:5173
 ```
 
-Service-specific instructions are in each service's own `README.md`. The full start order, who owns which zip, and the Git workflow are in [`TEAM-GUIDE.md`](TEAM-GUIDE.md).
+Service-specific instructions are in each service's own `README.md`.
 
 ### Dev logins
 
@@ -149,11 +149,12 @@ docker exec -it wildguard-postgres psql -U wildguard -d postgres \
 ```
 wildguard/
 ├── CONTRACTS.md          single source of truth for all APIs
-├── TEAM-GUIDE.md         who owns what, start order, Git workflow
 ├── README.md
 ├── docker-compose.yml    PostgreSQL only
 ├── docker/postgres/init/ creates the 8 databases
 ├── .env.example
+├── .devcontainer/        GitHub Codespaces setup (+ start-all.sh, status.sh, stop-all.sh)
+├── .github/workflows/    builds and tests every module on each push
 ├── api-gateway/  auth-service/  habitat-service/  wildlife-service/  resource-service/
 ├── patrol-service/  incident-service/  rescue-service/  programme-service/  reporting-service/
 └── frontend/
