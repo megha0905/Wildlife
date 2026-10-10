@@ -1,0 +1,56 @@
+server:
+  port: ${SERVER_PORT:8089}
+
+spring:
+  application:
+    name: reporting-service
+
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 2000
+            read-timeout: 5000
+            logger-level: basic
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: always
+
+app:
+  timezone: ${APP_TIMEZONE:Asia/Kolkata}
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+# Other services this one calls (CONTRACTS.md 8)
+services:
+  habitat:
+    url: ${HABITAT_SERVICE_URL:http://localhost:8082}
+  wildlife:
+    url: ${WILDLIFE_SERVICE_URL:http://localhost:8083}
+  resource:
+    url: ${RESOURCE_SERVICE_URL:http://localhost:8084}
+  patrol:
+    url: ${PATROL_SERVICE_URL:http://localhost:8085}
+  incident:
+    url: ${INCIDENT_SERVICE_URL:http://localhost:8086}
+  rescue:
+    url: ${RESCUE_SERVICE_URL:http://localhost:8087}
+  programme:
+    url: ${PROGRAMME_SERVICE_URL:http://localhost:8088}
