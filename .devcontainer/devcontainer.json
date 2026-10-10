@@ -1,0 +1,16 @@
+{
+  "name": "WildGuard",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": { "version": "17", "installMaven": "true" },
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "hostRequirements": { "cpus": 4, "memory": "16gb" },
+  "forwardPorts": [5173, 8080],
+  "portsAttributes": {
+    "5173": { "label": "WildGuard app", "onAutoForward": "openBrowser" },
+    "8080": { "label": "API gateway" }
+  },
+  "postCreateCommand": "test -f .env || cp .env.example .env; test -f frontend/.env || echo 'VITE_API_BASE_URL=' > frontend/.env"
+}

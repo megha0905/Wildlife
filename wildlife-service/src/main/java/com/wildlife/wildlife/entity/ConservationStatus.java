@@ -1,0 +1,5 @@
+package com.wildlife.wildlife.entity;
+
+public enum ConservationStatus {
+    LEAST_CONCERN, NEAR_THREATENED, VULNERABLE, ENDANGERED, CRITICALLY_ENDANGERED, EXTINCT_IN_THE_WILD, DATA_DEFICIENT, NOT_EVALUATED
+}

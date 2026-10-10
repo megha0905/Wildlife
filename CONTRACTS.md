@@ -1021,25 +1021,27 @@ Vehicles 1–3 (jeeps/rescue van), equipment 1–5 (camera traps, GPS, radio, tr
 ## 13. Repository layout
 
 ```
-wildguard/                     ← repo root (00-platform-root.zip)
+wildguard/                     ← repo root
 ├── CONTRACTS.md
 ├── README.md
-├── TEAM-GUIDE.md              (Phase 7)
-├── docker-compose.yml
+├── docker-compose.yml         PostgreSQL only
 ├── docker/postgres/init/01-create-databases.sql
 ├── .env.example
 ├── .gitignore
-├── api-gateway/               ← 01-api-gateway.zip
-├── auth-service/              ← 02-auth-service.zip
-├── habitat-service/           ← 03-habitat-service.zip
-├── wildlife-service/          ← 04-wildlife-service.zip
-├── resource-service/          ← 05-resource-service.zip
-├── patrol-service/            ← 06-patrol-service.zip
-├── incident-service/          ← 07-incident-service.zip
-├── rescue-service/            ← 08-rescue-service.zip
-├── programme-service/         ← 09-programme-service.zip
-├── reporting-service/         ← 10-reporting-service.zip
-└── frontend/                  ← 11-frontend.zip
+├── .devcontainer/             GitHub Codespaces setup
+├── .github/workflows/         build and test every module on each push
+├── start-all.sh  status.sh  stop-all.sh
+├── api-gateway/
+├── auth-service/
+├── habitat-service/
+├── wildlife-service/
+├── resource-service/
+├── patrol-service/
+├── incident-service/
+├── rescue-service/
+├── programme-service/
+├── reporting-service/
+└── frontend/
 ```
 
 Each service folder is a standalone Maven project (`mvn spring-boot:run` inside it) with its own `README.md`.
@@ -1050,5 +1052,5 @@ Each service folder is a standalone Maven project (`mvn spring-boot:run` inside 
 
 | Version | Change |
 |---|---|
-| 1.0 | Initial contracts (Phase 0) |
+| 1.0 | Initial contracts |
 | 1.1 | Added 6.5 (programme status workflow, read-only once completed or cancelled, delete only while planned). Confirmed while building every module: RG may call `PATCH /api/allocations/{id}/status` and `PATCH /api/animals/{id}/status` (patrol and rescue forward a ranger's token); detail responses (`ScheduleDetailResponse`, `IncidentDetailResponse`, `RescueDetailResponse`, `ProgrammeDetailResponse`) are the base response with extra fields added at the top level, not nested; reporting passes each service's summary through unchanged; the frontend uses React Router 6 and Leaflet. No endpoint paths changed. |
