@@ -1,0 +1,5 @@
+package com.wildlife.incident.entity;
+
+public enum IncidentType {
+    WILDLIFE_INJURY, HUMAN_ANIMAL_CONFLICT, POACHING, ILLEGAL_LOGGING, ENCROACHMENT, FOREST_FIRE, OTHER_THREAT
+}
