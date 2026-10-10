@@ -1,0 +1,77 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: api-gateway
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 2000
+        response-timeout: 30s
+      # Route table: CONTRACTS.md section 10. Plain Path predicates, no rewriting.
+      routes:
+        - id: auth
+          uri: ${wildguard.services.auth}
+          predicates:
+            - Path=/api/auth/**,/api/users/**
+        - id: habitat
+          uri: ${wildguard.services.habitat}
+          predicates:
+            - Path=/api/areas/**,/api/zones/**,/api/habitats/**,/api/water-resources/**
+        - id: wildlife
+          uri: ${wildguard.services.wildlife}
+          predicates:
+            - Path=/api/species/**,/api/animals/**
+        - id: resource
+          uri: ${wildguard.services.resource}
+          predicates:
+            - Path=/api/staff/**,/api/vehicles/**,/api/equipment/**,/api/allocations/**,/api/resources/**
+        - id: patrol
+          uri: ${wildguard.services.patrol}
+          predicates:
+            - Path=/api/patrols/**
+        - id: incident
+          uri: ${wildguard.services.incident}
+          predicates:
+            - Path=/api/incidents/**
+        - id: rescue
+          uri: ${wildguard.services.rescue}
+          predicates:
+            - Path=/api/rescues/**
+        - id: programme
+          uri: ${wildguard.services.programme}
+          predicates:
+            - Path=/api/programmes/**
+        - id: reporting
+          uri: ${wildguard.services.reporting}
+          predicates:
+            - Path=/api/reports/**
+
+wildguard:
+  # Service base URLs, used by the routes above and by GET /api/gateway/health
+  services:
+    auth: ${AUTH_SERVICE_URL:http://localhost:8081}
+    habitat: ${HABITAT_SERVICE_URL:http://localhost:8082}
+    wildlife: ${WILDLIFE_SERVICE_URL:http://localhost:8083}
+    resource: ${RESOURCE_SERVICE_URL:http://localhost:8084}
+    patrol: ${PATROL_SERVICE_URL:http://localhost:8085}
+    incident: ${INCIDENT_SERVICE_URL:http://localhost:8086}
+    rescue: ${RESCUE_SERVICE_URL:http://localhost:8087}
+    programme: ${PROGRAMME_SERVICE_URL:http://localhost:8088}
+    reporting: ${REPORTING_SERVICE_URL:http://localhost:8089}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
