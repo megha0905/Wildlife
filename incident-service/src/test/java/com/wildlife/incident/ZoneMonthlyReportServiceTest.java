@@ -110,7 +110,7 @@ class ZoneMonthlyReportServiceTest {
         lead.setId(11L);
         lead.setIncident(first);
         lead.setStaffId(2L);
-        lead.setStaffName("Ravi Uikey");
+        lead.setStaffName("Soni Kumari");
         lead.setDesignation("RANGE_OFFICER");
         lead.setAssignmentRole(AssignmentRole.LEAD);
         lead.setAssignedAt(LocalDateTime.of(2026, 10, 2, 9, 0));
@@ -121,7 +121,7 @@ class ZoneMonthlyReportServiceTest {
         assertThat(r.incidents().get(0).assignedPersonnel())
                 .singleElement()
                 .satisfies(p -> {
-                    assertThat(p.staffName()).isEqualTo("Ravi Uikey");
+                    assertThat(p.staffName()).isEqualTo("Soni Kumari");
                     assertThat(p.assignmentRole()).isEqualTo(AssignmentRole.LEAD);
                 });
         assertThat(r.incidents().get(0).latitude()).isEqualTo(22.28);

@@ -74,7 +74,7 @@ class RescueServiceTest {
         fit.setFitForRelease(true);
         when(rehab.findFirstByRescueIdOrderByAssessedOnDescIdDesc(2L)).thenReturn(Optional.of(fit));
 
-        AuthUser officer = new AuthUser(2L, "officer", "Anita Sharma", List.of("FOREST_OFFICER"), 1L);
+        AuthUser officer = new AuthUser(2L, "officer", "Megha Gupta", List.of("FOREST_OFFICER"), 1L);
         SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
                 officer, null, List.of(new SimpleGrantedAuthority("ROLE_FOREST_OFFICER"))));
     }

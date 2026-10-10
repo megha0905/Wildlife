@@ -83,27 +83,27 @@ FROM seed_clock c,
 (VALUES
  (1, 'Cattle kill reported near Mukki gate', 'HUMAN_ANIMAL_CONFLICT', 'HIGH', 'IN_PROGRESS',
      'Villagers report a cow killed by a tiger 300 m inside the boundary. Compensation claim expected.',
-     1, 1, 'Mukki Core', 22.2860, 80.6390, '300 m north of Mukki gate', 0.10, 3, 'Ravi Uikey', NULL, NULL, 1, NULL),
+     1, 1, 'Mukki Core', 22.2860, 80.6390, '300 m north of Mukki gate', 0.10, 3, 'Soni Kumari', NULL, NULL, 1, NULL),
  (2, 'Limping tigress seen near Sondar tank', 'WILDLIFE_INJURY', 'MEDIUM', 'VERIFIED',
      'Tigress TGR-KNH-014 seen limping on the right hind leg; vet assessment requested.',
-     1, 1, 'Mukki Core', 22.2950, 80.6380, 'Sondar tank, east bank', 0.25, 3, 'Ravi Uikey', NULL, 2, 1, NULL),
+     1, 1, 'Mukki Core', 22.2950, 80.6380, 'Sondar tank, east bank', 0.25, 3, 'Soni Kumari', NULL, 2, 1, NULL),
  (3, 'Wire snare found on game trail', 'POACHING', 'HIGH', 'REPORTED',
      'Wire snare on game trail 200 m from waterhole 3; removed by patrol. Escalated from patrol log.',
-     1, 1, 'Mukki Core', 22.2815, 80.6455, '200 m from waterhole 3', 0.40, 3, 'Ravi Uikey', NULL, NULL, NULL, 2),
+     1, 1, 'Mukki Core', 22.2815, 80.6455, '200 m from waterhole 3', 0.40, 3, 'Soni Kumari', NULL, NULL, NULL, 2),
  (4, 'Ground fire near compartment 412', 'FOREST_FIRE', 'MEDIUM', 'RESOLVED',
      'Small ground fire spotted by fire watcher; contained with beaters.',
-     1, 1, 'Mukki Core', 22.2790, 80.6510, 'Compartment 412', 0.55, 2, 'Anita Sharma',
+     1, 1, 'Mukki Core', 22.2790, 80.6510, 'Compartment 412', 0.55, 2, 'Megha Gupta',
      'Fire line cut and blaze put out within two hours; about 0.5 ha of grass burnt.', NULL, NULL, NULL),
  (5, 'Fresh teak stumps found', 'ILLEGAL_LOGGING', 'LOW', 'CLOSED',
      'Three freshly cut teak stumps found during beat patrol.',
-     1, 1, 'Mukki Core', 22.2880, 80.6300, 'Beat 7, near nala crossing', 0.15, 3, 'Ravi Uikey',
+     1, 1, 'Mukki Core', 22.2880, 80.6300, 'Beat 7, near nala crossing', 0.15, 3, 'Soni Kumari',
      'Timber seized from nearby village; offence case registered.', NULL, NULL, NULL),
  (6, 'Gunshots heard near Mihimukh', 'POACHING', 'CRITICAL', 'IN_PROGRESS',
      'Two gunshots heard at night from the direction of Mihimukh beel. Anti-poaching camp alerted.',
-     2, 3, 'Kohora Central', 26.5850, 93.1750, 'Mihimukh beel, north side', 0.70, 2, 'Anita Sharma', NULL, NULL, 3, NULL),
+     2, 3, 'Kohora Central', 26.5850, 93.1750, 'Mihimukh beel, north side', 0.70, 2, 'Megha Gupta', NULL, NULL, 3, NULL),
  (7, 'Elephants raiding paddy at forest edge', 'HUMAN_ANIMAL_CONFLICT', 'MEDIUM', 'REPORTED',
      'Herd of about 12 elephants raided paddy fields; no injuries.',
-     2, 3, 'Kohora Central', 26.5700, 93.1650, 'Kohora village fields', 0.85, 2, 'Anita Sharma', NULL, NULL, 2, NULL)
+     2, 3, 'Kohora Central', 26.5700, 93.1650, 'Kohora village fields', 0.85, 2, 'Megha Gupta', NULL, NULL, 2, NULL)
 ) AS v(id, title, incident_type, severity, status, description, area_id, zone_id, zone_name, latitude, longitude,
        location_description, f, reported_by, reported_name, resolution_notes, animal_id, species_id, patrol_log);
 
@@ -115,7 +115,7 @@ INSERT INTO incidents (id, incident_code, title, incident_type, severity, status
 VALUES (8, 'INC-' || to_char(LOCALTIMESTAMP, 'YYYY') || '-0008', 'Injured tusker near Thekkady lake', 'WILDLIFE_INJURY',
         'HIGH', 'RESOLVED', 'Tusker Kombi seen with a swollen left hind leg; rescue team called.',
         3, 5, 'Thekkady Core', 9.5916, 77.1676, 'Lake edge near boat landing',
-        LOCALTIMESTAMP - interval '9 days 6 hours', LOCALTIMESTAMP - interval '9 days 5 hours', 4, 'Dr. Arun Menon',
+        LOCALTIMESTAMP - interval '9 days 6 hours', LOCALTIMESTAMP - interval '9 days 5 hours', 4, 'Dr. Neha Fatima',
         LOCALTIMESTAMP - interval '9 days 4 hours', LOCALTIMESTAMP - interval '9 days',
         'Animal tranquilised and moved to the rescue centre (rescue case 1).', 5, 2);
 
@@ -124,30 +124,30 @@ SELECT setval(pg_get_serial_sequence('incidents', 'id'), (SELECT MAX(id) FROM in
 
 INSERT INTO incident_assignments (incident_id, staff_id, staff_name, designation, assignment_role, assigned_at,
                                   assigned_by_name, active)
-SELECT i.id, v.staff_id, v.staff_name, v.designation, v.role, i.reported_at + interval '5 minutes', 'Anita Sharma', TRUE
+SELECT i.id, v.staff_id, v.staff_name, v.designation, v.role, i.reported_at + interval '5 minutes', 'Megha Gupta', TRUE
 FROM incidents i
 JOIN (VALUES
-  (1, 2, 'Ravi Uikey',     'RANGE_OFFICER', 'LEAD'),
-  (1, 3, 'Mohan Das',      'FOREST_GUARD',  'SUPPORT'),
-  (2, 2, 'Ravi Uikey',     'RANGE_OFFICER', 'INVESTIGATOR'),
-  (2, 4, 'Dr. Arun Menon', 'VETERINARIAN',  'VETERINARY'),
-  (4, 3, 'Mohan Das',      'FOREST_GUARD',  'LEAD'),
-  (5, 2, 'Ravi Uikey',     'RANGE_OFFICER', 'LEAD'),
-  (6, 5, 'Bikash Bora',    'FOREST_GUARD',  'LEAD'),
-  (8, 4, 'Dr. Arun Menon', 'VETERINARIAN',  'VETERINARY')
+  (1, 2, 'Soni Kumari',     'RANGE_OFFICER', 'LEAD'),
+  (1, 3, 'Srishti Sao',      'FOREST_GUARD',  'SUPPORT'),
+  (2, 2, 'Soni Kumari',     'RANGE_OFFICER', 'INVESTIGATOR'),
+  (2, 4, 'Dr. Neha Fatima', 'VETERINARIAN',  'VETERINARY'),
+  (4, 3, 'Srishti Sao',      'FOREST_GUARD',  'LEAD'),
+  (5, 2, 'Soni Kumari',     'RANGE_OFFICER', 'LEAD'),
+  (6, 5, 'Sakshi Rathi',    'FOREST_GUARD',  'LEAD'),
+  (8, 4, 'Dr. Neha Fatima', 'VETERINARIAN',  'VETERINARY')
 ) AS v(incident_id, staff_id, staff_name, designation, role) ON v.incident_id = i.id;
 
 -- Workflow history consistent with each incident's current status
 INSERT INTO incident_status_history (incident_id, from_status, to_status, changed_by_user_id, changed_by_name, changed_at, note)
 SELECT id, NULL, 'REPORTED', reported_by_user_id, reported_by_name, reported_at, 'Incident reported' FROM incidents;
 INSERT INTO incident_status_history (incident_id, from_status, to_status, changed_by_user_id, changed_by_name, changed_at, note)
-SELECT id, 'REPORTED', 'VERIFIED', 2, 'Anita Sharma', verified_at, NULL FROM incidents WHERE verified_at IS NOT NULL;
+SELECT id, 'REPORTED', 'VERIFIED', 2, 'Megha Gupta', verified_at, NULL FROM incidents WHERE verified_at IS NOT NULL;
 INSERT INTO incident_status_history (incident_id, from_status, to_status, changed_by_user_id, changed_by_name, changed_at, note)
-SELECT id, 'VERIFIED', 'IN_PROGRESS', 2, 'Anita Sharma', verified_at + (COALESCE(resolved_at, LOCALTIMESTAMP) - verified_at) / 4, NULL
+SELECT id, 'VERIFIED', 'IN_PROGRESS', 2, 'Megha Gupta', verified_at + (COALESCE(resolved_at, LOCALTIMESTAMP) - verified_at) / 4, NULL
 FROM incidents WHERE status IN ('IN_PROGRESS', 'RESOLVED', 'CLOSED');
 INSERT INTO incident_status_history (incident_id, from_status, to_status, changed_by_user_id, changed_by_name, changed_at, note)
-SELECT id, 'IN_PROGRESS', 'RESOLVED', 2, 'Anita Sharma', resolved_at, resolution_notes FROM incidents WHERE resolved_at IS NOT NULL;
+SELECT id, 'IN_PROGRESS', 'RESOLVED', 2, 'Megha Gupta', resolved_at, resolution_notes FROM incidents WHERE resolved_at IS NOT NULL;
 INSERT INTO incident_status_history (incident_id, from_status, to_status, changed_by_user_id, changed_by_name, changed_at, note)
-SELECT id, 'RESOLVED', 'CLOSED', 2, 'Anita Sharma', closed_at, NULL FROM incidents WHERE closed_at IS NOT NULL;
+SELECT id, 'RESOLVED', 'CLOSED', 2, 'Megha Gupta', closed_at, NULL FROM incidents WHERE closed_at IS NOT NULL;
 
 DROP TABLE seed_clock;

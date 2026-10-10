@@ -73,10 +73,10 @@ INSERT INTO animals (id, tag_id, name, species_id, sex, birth_year, birth_year_e
 
 INSERT INTO health_records (animal_id, record_date, record_type, health_status, weight_kg, diagnosis, treatment,
                             vet_name, recorded_by_user_id, recorded_by_name, notes) VALUES
- (1, CURRENT_DATE - 60, 'CHECKUP',           'HEALTHY',         NULL,   NULL,                       NULL,                              'Dr. Arun Menon', 4, 'Dr. Arun Menon', 'Camera-trap body condition assessment'),
- (5, CURRENT_DATE - 9,  'INJURY_ASSESSMENT', 'INJURED',         4100,   'Abscess on left hind leg', NULL,                              'Dr. Arun Menon', 4, 'Dr. Arun Menon', NULL),
- (5, CURRENT_DATE - 8,  'TREATMENT',         'UNDER_TREATMENT', 4100,   'Abscess on left hind leg', 'Drained; antibiotics started',    'Dr. Arun Menon', 4, 'Dr. Arun Menon', NULL),
- (8, CURRENT_DATE - 1,  'OBSERVATION',       'INJURED',         NULL,   'Possible foreleg injury',  NULL,                              NULL,             3, 'Ravi Uikey',     'Limping, seen from 80 m');
+ (1, CURRENT_DATE - 60, 'CHECKUP',           'HEALTHY',         NULL,   NULL,                       NULL,                              'Dr. Neha Fatima', 4, 'Dr. Neha Fatima', 'Camera-trap body condition assessment'),
+ (5, CURRENT_DATE - 9,  'INJURY_ASSESSMENT', 'INJURED',         4100,   'Abscess on left hind leg', NULL,                              'Dr. Neha Fatima', 4, 'Dr. Neha Fatima', NULL),
+ (5, CURRENT_DATE - 8,  'TREATMENT',         'UNDER_TREATMENT', 4100,   'Abscess on left hind leg', 'Drained; antibiotics started',    'Dr. Neha Fatima', 4, 'Dr. Neha Fatima', NULL),
+ (8, CURRENT_DATE - 1,  'OBSERVATION',       'INJURED',         NULL,   'Possible foreleg injury',  NULL,                              NULL,             3, 'Soni Kumari',     'Limping, seen from 80 m');
 
 SELECT setval(pg_get_serial_sequence('species', 'id'), (SELECT MAX(id) FROM species));
 SELECT setval(pg_get_serial_sequence('animals', 'id'), (SELECT MAX(id) FROM animals));

@@ -176,7 +176,7 @@ Shorthand in the endpoint tables:
 | `iss` | string | `"wildguard-auth"` | Always this value. Validators reject other issuers. |
 | `sub` | string | `"officer"` | Username |
 | `uid` | number | `2` | User ID in auth_db |
-| `name` | string | `"Anita Sharma"` | Full name (for display and "changed by" snapshots) |
+| `name` | string | `"Megha Gupta"` | Full name (for display and "changed by" snapshots) |
 | `roles` | string[] | `["FOREST_OFFICER"]` | Role names **without** `ROLE_` prefix |
 | `staffId` | number or null | `1` | Linked staff ID in resource-service, if any |
 | `iat` | number | epoch seconds | Issued at |
@@ -184,7 +184,7 @@ Shorthand in the endpoint tables:
 
 Example payload:
 ```json
-{ "iss": "wildguard-auth", "sub": "officer", "uid": 2, "name": "Anita Sharma",
+{ "iss": "wildguard-auth", "sub": "officer", "uid": 2, "name": "Megha Gupta",
   "roles": ["FOREST_OFFICER"], "staffId": 1, "iat": 1760068800, "exp": 1760076000 }
 ```
 
@@ -967,11 +967,11 @@ Each service's `V1__init.sql` seeds a little data. **IDs must match this table**
 
 | id | username | password | roles | fullName | staffId |
 |---|---|---|---|---|---|
-| 1 | admin | `Admin@123` | ADMIN | System Administrator | null |
-| 2 | officer | `Officer@123` | FOREST_OFFICER | Anita Sharma | 1 |
-| 3 | ranger | `Ranger@123` | RANGER | Ravi Uikey | 2 |
-| 4 | vet | `Vet@123` | VET | Dr. Arun Menon | 4 |
-| 5 | analyst | `Analyst@123` | ANALYST | Priya Desai | null |
+| 1 | admin | `Admin@123` | ADMIN | Srishti Sao | null |
+| 2 | officer | `Officer@123` | FOREST_OFFICER | Megha Gupta | 1 |
+| 3 | ranger | `Ranger@123` | RANGER | Soni Kumari | 2 |
+| 4 | vet | `Vet@123` | VET | Dr. Neha Fatima | 4 |
+| 5 | analyst | `Analyst@123` | ANALYST | Sakshi Rathi | null |
 
 **habitat_db areas and zones:**
 
@@ -994,11 +994,11 @@ Each service's `V1__init.sql` seeds a little data. **IDs must match this table**
 
 | id | code | name | designation | home area |
 |---|---|---|---|---|
-| 1 | EMP-001 | Anita Sharma | FOREST_OFFICER | 1 |
-| 2 | EMP-002 | Ravi Uikey | RANGE_OFFICER | 1 |
-| 3 | EMP-003 | Mohan Das | FOREST_GUARD | 1 |
-| 4 | EMP-004 | Dr. Arun Menon | VETERINARIAN | 3 |
-| 5 | EMP-005 | Bikash Bora | FOREST_GUARD | 2 |
+| 1 | EMP-001 | Megha Gupta | FOREST_OFFICER | 1 |
+| 2 | EMP-002 | Soni Kumari | RANGE_OFFICER | 1 |
+| 3 | EMP-003 | Srishti Sao | FOREST_GUARD | 1 |
+| 4 | EMP-004 | Dr. Neha Fatima | VETERINARIAN | 3 |
+| 5 | EMP-005 | Sakshi Rathi | FOREST_GUARD | 2 |
 | 6 | EMP-006 | Suresh Nair | RANGE_OFFICER | 3 |
 | 7 | EMP-007 | Imran Khan | DRIVER | 1 |
 | 8 | EMP-008 | Lakshmi Pillai | RESEARCHER | 2 |

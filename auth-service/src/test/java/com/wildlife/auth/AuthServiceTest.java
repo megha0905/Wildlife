@@ -38,7 +38,7 @@ class AuthServiceTest {
         officer = new User();
         officer.setId(2L);
         officer.setUsername("officer");
-        officer.setFullName("Anita Sharma");
+        officer.setFullName("Megha Gupta");
         officer.setPasswordHash(encoder.encode("Officer@123"));
         officer.setRoles(Set.of(Role.FOREST_OFFICER));
         officer.setActive(true);
