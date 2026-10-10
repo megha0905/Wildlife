@@ -1,5 +1,0 @@
-package com.wildlife.habitat.entity;
-
-public enum AreaType {
-    NATIONAL_PARK, WILDLIFE_SANCTUARY, TIGER_RESERVE, CONSERVATION_RESERVE, COMMUNITY_RESERVE, BIOSPHERE_RESERVE
-}

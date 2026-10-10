@@ -1,5 +1,0 @@
-package com.wildlife.habitat.entity;
-
-public enum HabitatType {
-    GRASSLAND, TROPICAL_DRY_FOREST, TROPICAL_MOIST_FOREST, WETLAND, RIVERINE, DESERT, MONTANE, MANGROVE, SCRUBLAND
-}
