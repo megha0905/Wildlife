@@ -323,7 +323,7 @@ a.kpi:hover { border-color: var(--forest-500); }
 .drawer-head h2 { margin-bottom: 0.25rem; }
 .drawer-head .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
 .drawer-body { padding: 1rem 1.25rem 2rem; }
-.alias { color: var(--ink-soft); font-size: 0.85rem; }
+.alias { color: var(--ink-soft); font-size: 0.85rem; margin-left: 8px; }
 
 /* ------------------------------------------------------------------ modal & forms */
 .modal { border: none; border-radius: 10px; padding: 0; width: min(560px, calc(100vw - 2rem)); box-shadow: 0 12px 40px rgba(0,0,0,0.25); color: var(--ink); max-height: calc(100vh - 2rem); }

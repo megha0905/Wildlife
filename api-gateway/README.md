@@ -59,7 +59,7 @@ Routes are defined in `src/main/resources/application.yml`. Paths are forwarded 
 
 ## How security works here
 
-1. `CorsConfig` answers browser preflight requests and allows `CORS_ALLOWED_ORIGINS` (the Vite dev server by default).
+1. `CorsConfig` answers browser preflight requests and allows `CORS_ALLOWED_ORIGINS` (the frontend dev server on 5173 by default).
 2. `JwtAuthenticationWebFilter` runs before routing. `POST /api/auth/login`, `OPTIONS` requests and anything outside `/api/` pass without a token. Everything else needs `Authorization: Bearer <token>` with a valid signature (HS256, `JWT_SECRET`), issuer `wildguard-auth` and an unexpired `exp`. Otherwise: 401 in the standard error format.
 3. The request is forwarded **with the original Authorization header**. Each service validates the token again and applies its own role rules (`@PreAuthorize`). The gateway only answers "is this a real, current login?"; roles are checked by the services.
 

@@ -2,7 +2,7 @@
 
 Smart Wildlife Conservation & Protected Area Management: an enterprise web application that helps wildlife authorities manage animal records, protected areas, patrols, incidents, rescues, field resources and conservation programmes.
 
-Built as standalone Spring Boot microservices behind a Spring Cloud Gateway, with a React + TypeScript frontend and one PostgreSQL database per service.
+Built as standalone Spring Boot microservices behind a Spring Cloud Gateway, with a plain HTML, CSS and JavaScript frontend and one PostgreSQL database per service.
 
 **Read [`CONTRACTS.md`](CONTRACTS.md) before writing any code.** It defines every port, endpoint, DTO, enum, role and environment variable. If you need to change a contract, change that file first in the same pull request.
 
@@ -23,7 +23,7 @@ Built as standalone Spring Boot microservices behind a Spring Cloud Gateway, wit
 | frontend | 5173 | none | Team Lead |
 
 ```
- Browser ──► frontend (Vite, 5173)
+ Browser ──► frontend (HTML/CSS/JS, 5173)
                 │  all API calls
                 ▼
           api-gateway (8080)  ── checks JWT, routes by path
@@ -86,7 +86,7 @@ Every value except `JWT_SECRET` has a default that works locally, so in practice
 5. New terminal: `cd frontend && npm install && npm run dev`, then open port 5173 from the **Ports** tab.
 6. When finished: `bash stop-all.sh`, then stop the codespace so it doesn't use up your free hours.
 
-In Codespaces the frontend calls `/api` on its own address and Vite forwards it to the gateway (`frontend/vite.config.ts`), so only port 5173 has to be opened.
+In Codespaces the frontend calls `/api` on its own address and `frontend/server.js` forwards it to the gateway, so only port 5173 has to be opened.
 
 ## Running on your own computer
 
