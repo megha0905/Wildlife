@@ -12,5 +12,5 @@
     "5173": { "label": "WildGuard app", "onAutoForward": "openBrowser" },
     "8080": { "label": "API gateway" }
   },
-  "postCreateCommand": "test -f .env || cp .env.example .env; test -f frontend/.env || echo 'VITE_API_BASE_URL=' > frontend/.env"
+  "postCreateCommand": "test -f .env || cp .env.example .env"
 }

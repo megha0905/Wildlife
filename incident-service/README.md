@@ -84,7 +84,7 @@ Every path except `POST /api/auth/login` needs `Authorization: Bearer <token>`. 
 curl -H "Authorization: Bearer $TOKEN" "localhost:8080/api/incidents/zone/1/current-month?status=IN_PROGRESS"
 ```
 
-The frontend screen that uses it is **Monthly zone review** (`frontend/src/pages/ZoneMonthlyPage.tsx`).
+The frontend screen that uses it is **Monthly zone review** (`frontend/src/pages/ZoneMonthlyPage.js`).
 
 ## Demo data (V1__init.sql)
 

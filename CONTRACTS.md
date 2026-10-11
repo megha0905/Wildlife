@@ -22,7 +22,7 @@ Contract version: **1.1** (all modules built; see the change log in section 14)
 | 08 | Rescue & rehabilitation | `rescue-service` | 8087 | `rescue_db` | `/api/rescues` | Member 4 |
 | 09 | Conservation programmes | `programme-service` | 8088 | `programme_db` | `/api/programmes` | Member 5 |
 | 10 | Dashboard & reporting | `reporting-service` | 8089 | none | `/api/reports` | Member 5 |
-| 11 | Frontend | `frontend` | 5173 | none | React + TypeScript (Vite) | Team Lead |
+| 11 | Frontend | `frontend` | 5173 | none | HTML, CSS and JavaScript (ES modules) | Team Lead |
 
 All databases live in **one PostgreSQL 16 container** (`docker-compose.yml` in the repo root). Each service connects only to its own database.
 
@@ -39,7 +39,7 @@ All databases live in **one PostgreSQL 16 container** (`docker-compose.yml` in t
 | API docs | `springdoc-openapi-starter-webmvc-ui` **2.6.0** (`/swagger-ui.html` on each service's own port) |
 | Validation | Bean Validation (`spring-boot-starter-validation`) |
 | Tests | JUnit 5 + Mockito (`spring-boot-starter-test`) |
-| Frontend | React 18 + TypeScript, Vite 5, React Router 6, Leaflet (OpenStreetMap tiles) for maps |
+| Frontend | Plain HTML5, CSS3 and JavaScript (ES modules, no framework, no build step), a small Node.js dev server (`server.js`, built-in modules only) that also forwards `/api` to the gateway, Leaflet (OpenStreetMap tiles) for maps |
 | **Not allowed** | Eureka, Config Server, Kafka, RabbitMQ, Resilience4j, PostGIS, Redis, a shared parent POM, a shared library |
 
 **Package layout** (every Java service):
@@ -934,7 +934,7 @@ Gateway also:
 | `REPORTING_SERVICE_URL` | gateway | `http://localhost:8089` | |
 | `CORS_ALLOWED_ORIGINS` | gateway | `http://localhost:5173` | comma-separated |
 | `POSTGRES_USER` / `POSTGRES_PASSWORD` | docker-compose | `wildguard` / `wildguard` | must match `DB_USERNAME` / `DB_PASSWORD` |
-| `VITE_API_BASE_URL` | frontend | `http://localhost:8080` | all browser calls go to the gateway |
+| `API_TARGET` | frontend (`server.js`) | `http://localhost:8080` | where the dev server forwards `/api/...` requests (the gateway) |
 
 Standard `application.yml` datasource block (each service, with its own DB name):
 ```yaml
